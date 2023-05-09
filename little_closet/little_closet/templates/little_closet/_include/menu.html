@@ -11,11 +11,11 @@
 		<!-- Navigation -->
 		<div class="menu_nav">
 			<ul>
-				<li><a href="#">Women</a></li>
-				<li><a href="#">Men</a></li>
-				<li><a href="#">Kids</a></li>
-				<li><a href="#">Home Deco</a></li>
-				<li><a href="#">Contact</a></li>
+				{% for cat in categories %}
+				<li>
+					<a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<!-- Contact Info -->
