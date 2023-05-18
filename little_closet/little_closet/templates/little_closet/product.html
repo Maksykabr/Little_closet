@@ -33,9 +33,13 @@
 						<div class="home_title">Product Page</div>
 						<div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
 							<ul class="d-flex flex-row align-items-start justify-content-start text-center">
-								<li><a href="#">Home</a></li>
-								<li><a href="category.html">Woman</a></li>
-								<li>New Products</li>
+								{% for cat in categories %}
+									{% if cat.name == product.category %}
+										<li class="active"><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+									{% else %}
+										<li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+									{% endif %}
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -52,32 +56,8 @@
 						<div class="col-lg-6">
 							<div class="product_image_slider_container">
 								<div id="slider" class="flexslider">
-									<ul class="slides">
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-										<li>
-											<img src="{% static 'little_closet/images/product_image_1.jpg' %}" />
-										</li>
-									</ul>
+									<img src="{% if product.image %}{{ product.image.url}}{% else %}
+							{% static 'little_closet/images/product_1.jpg' %}{% endif %}" />
 								</div>
 								<div class="carousel_container">
 									<div id="carousel" class="flexslider">
@@ -117,14 +97,14 @@
 						<!-- Product Info -->
 						<div class="col-lg-6 product_col">
 							<div class="product_info">
-								<div class="product_name">Cool Clothing with Brown Stripes</div>
-								<div class="product_category">In <a href="category.html">Category</a></div>
+								<div class="product_name">{{ product.name }}</div>
+								<div class="product_category">In <a href="category.html">{{ product.category }}</a></div>
 								<div class="product_rating_container d-flex flex-row align-items-center justify-content-start">
 									<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 									<div class="product_reviews">4.7 out of (3514)</div>
 									<div class="product_reviews_link"><a href="#">Reviews</a></div>
 								</div>
-								<div class="product_price">$3<span>.99</span></div>
+								<div class="product_price">${{ product.price }}</div>
 								<div class="product_size">
 									<div class="product_size_title">Select Size</div>
 									<ul class="d-flex flex-row align-items-start justify-content-start">
@@ -155,7 +135,7 @@
 									</ul>
 								</div>
 								<div class="product_text">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec consequat lorem. Maecenas elementum at diam consequat bibendum. Mauris iaculis fringilla ex, sit amet semper libero facilisis sit amet. Nunc ut aliquet metus. Praesent pulvinar justo sed velit tempus bibendum. Quisque dictum lorem id mi viverra, in auctor justo laoreet. Nam at massa malesuada, ullamcorper metus vel, consequat risus. Phasellus ultricies velit vel accumsan porta.</p>
+									<p>{{ product.description }}</p>
 								</div>
 								<div class="product_buttons">
 									<div class="text-right d-flex flex-row align-items-start justify-content-start">
@@ -166,7 +146,7 @@
 											<div><div><button><form><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""></form></button><div>+</div></div></div>
 										</div>
 									</div>
-								</div>d
+								</div>
 							</div>
 						</div>
 					</div>
@@ -272,28 +252,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="footer_bar">
-					<div class="container">
-						<div class="row">
-							<div class="col">
-								<div class="footer_bar_content d-flex flex-md-row flex-column align-items-center justify-content-start">
-									<div class="copyright order-md-1 order-2"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-									<nav class="footer_nav ml-md-auto order-md-2 order-1">
-										<ul class="d-flex flex-row align-items-center justify-content-start">
-											<li><a href="category.html">Women</a></li>
-											<li><a href="category.html">Men</a></li>
-											<li><a href="category.html">Kids</a></li>
-											<li><a href="category.html">Home Deco</a></li>
-											<li><a href="#">Contact</a></li>
-										</ul>
-									</nav>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% include 'little_closet/_include/footer.html' %}
 			</footer>
 		</div>
 

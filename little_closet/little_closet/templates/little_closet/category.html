@@ -87,20 +87,22 @@
 				<div class="row products_row products_container grid">
 					
 					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item new">
+					{% for product in products|slice:":9" %}
+						<div class="col-xl-4 col-md-6 grid-item new">
 						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_1.jpg' %}" alt=""></div>
+							<div class="product_image"><img src="{% if product.image %}{{ product.image.url}}{% else %}
+							{% static 'little_closet/images/product_1.jpg' %}{% endif %}" alt=""></div>
 							<div class="product_content">
 								<div class="product_info d-flex flex-row align-items-start justify-content-start">
 									<div>
 										<div>
-											<div class="product_name"><a href="product.html">Cool Clothing with Brown Stripes</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
+											<div class="product_name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></div>
+											<div class="product_category">In <a href="category.html">{{ product.category }}</a></div>
 										</div>
 									</div>
 									<div class="ml-auto text-right">
 										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$3<span>.99</span></div>
+										<div class="product_price text-right">{{ product.price }}</div>
 									</div>
 								</div>
 								<div class="product_buttons">
@@ -116,255 +118,7 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item hot">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_2.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Hype Grey Shirt</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$4<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item sale">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_3.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Long Sleeve Jacket</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$13<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item sale">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_4.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Denim Men Shirt</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$5<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item hot">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_5.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Long Red Shirt</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$7<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item new">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_6.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Short Sleeve Shirt</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$12<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item sale">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_7.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Red Stripped Dress</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$6<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item new">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_8.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">White Cotton Shirt</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$21<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Product -->
-					<div class="col-xl-4 col-md-6 grid-item sale">
-						<div class="product">
-							<div class="product_image"><img src="{% static 'little_closet/images/product_9.jpg' %}" alt=""></div>
-							<div class="product_content">
-								<div class="product_info d-flex flex-row align-items-start justify-content-start">
-									<div>
-										<div>
-											<div class="product_name"><a href="product.html">Black Short Sleeve Dress</a></div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
-										</div>
-									</div>
-									<div class="ml-auto text-right">
-										<div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="product_price text-right">$7<span>.99</span></div>
-									</div>
-								</div>
-								<div class="product_buttons">
-									<div class="text-right d-flex flex-row align-items-start justify-content-start">
-										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'little_closet/images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
+					{% endfor %}
 				</div>
 				<div class="row page_nav_row">
 					<div class="col">
@@ -453,28 +207,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="footer_bar">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="footer_bar_content d-flex flex-md-row flex-column align-items-center justify-content-start">
-								<div class="copyright order-md-1 order-2"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-								<nav class="footer_nav ml-md-auto order-md-2 order-1">
-									<ul class="d-flex flex-row align-items-center justify-content-start">
-										<li><a href="category.html">Women</a></li>
-										<li><a href="category.html">Men</a></li>
-										<li><a href="category.html">Kids</a></li>
-										<li><a href="category.html">Home Deco</a></li>
-										<li><a href="#">Contact</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			{% include 'little_closet/_include/footer.html' %}
 		</footer>
 	</div>
 		

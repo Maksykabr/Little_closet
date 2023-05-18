@@ -27,6 +27,7 @@ class Product(models.Model):
     slug = models.CharField(max_length=150, db_index=True, unique=True)
     description = models.TextField(max_length=1000, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='product/%Y/%m/%d', blank=True)
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -39,10 +40,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('get_product', kwargs={'slug': self.slug, 'id': self.id})
 
-class Image(models.Model):
-    image = models.ImageField(upload_to='product/%Y/%m/%d', blank=True)
-    images = models.ForeignKey(Product,
-                               related_name='images',
-                               on_delete=models.CASCADE
-                               )
+
